@@ -20,9 +20,22 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    CGRect firstFrame = self.window.bounds;
-    HypnosisterView *firstView = [[HypnosisterView alloc] initWithFrame:firstFrame];
-    [self.window addSubview:firstView];
+    CGRect screenRect = self.window.bounds;
+    CGRect bigRect = screenRect;
+    bigRect.size.width *= 2.0;
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
+    [scrollView setPagingEnabled:YES];
+    [self.window addSubview:scrollView];
+    
+    HypnosisterView *hypnosisView = [[HypnosisterView alloc] initWithFrame:screenRect];
+    [scrollView addSubview:hypnosisView];
+    
+    screenRect.origin.x += screenRect.size.width;
+    HypnosisterView *anotherView = [[HypnosisterView alloc] initWithFrame:screenRect];
+    [scrollView addSubview:anotherView];
+    
+    scrollView.contentSize = bigRect.size;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
