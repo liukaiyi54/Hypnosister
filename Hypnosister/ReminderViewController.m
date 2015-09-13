@@ -1,0 +1,45 @@
+//
+//  ReminderViewController.m
+//  Hypnosister
+//
+//  Created by Michael on 9/12/15.
+//  Copyright (c) 2015 Michael. All rights reserved.
+//
+
+#import "ReminderViewController.h"
+
+@interface ReminderViewController ()
+
+@property (nonatomic, weak) IBOutlet UIDatePicker *datePicker;
+
+@end
+
+@implementation ReminderViewController
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        UITabBarItem *item = self.tabBarItem;
+        
+        item.title = @"Reminder";
+    }
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+}
+
+- (IBAction)addReminder:(id)sender {
+    NSDate *date = self.datePicker.date;
+    NSLog(@"Setting a reminder for %@", date);
+    
+    UILocalNotification *note = [[UILocalNotification alloc] init];
+    note.alertBody = @"Hypotize me!";
+    note.fireDate = date;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:note];
+}
+
+@end

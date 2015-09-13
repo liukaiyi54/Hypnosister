@@ -54,7 +54,6 @@
     imageView.center = self.center;
     
     [self addSubview:imageView];
-    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

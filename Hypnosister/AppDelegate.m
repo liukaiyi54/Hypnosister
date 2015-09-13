@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "HypnosisterView.h"
-#import "ViewController.h"
+#import "HypnosisterViewController.h"
+#import "ReminderViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,24 +18,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    CGRect screenRect = self.window.bounds;
-    CGRect bigRect = screenRect;
-    bigRect.size.width *= 2.0;
+    HypnosisterViewController *hvc = [[HypnosisterViewController alloc] init];
+    ReminderViewController *rvc = [[ReminderViewController alloc] init];
     
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
-    [scrollView setPagingEnabled:YES];
-    [self.window addSubview:scrollView];
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[hvc, rvc];
     
-    HypnosisterView *hypnosisView = [[HypnosisterView alloc] initWithFrame:screenRect];
-    [scrollView addSubview:hypnosisView];
-    
-    screenRect.origin.x += screenRect.size.width;
-    HypnosisterView *anotherView = [[HypnosisterView alloc] initWithFrame:screenRect];
-    [scrollView addSubview:anotherView];
-    
-    scrollView.contentSize = bigRect.size;
+    self.window.rootViewController = tabBarController;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
