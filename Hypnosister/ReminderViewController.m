@@ -20,8 +20,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         UITabBarItem *item = self.tabBarItem;
-        
         item.title = @"Reminder";
+        item.image = [UIImage imageNamed:@"Hypno"];
     }
     return self;
 }
@@ -29,6 +29,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:60];
 }
 
 - (IBAction)addReminder:(id)sender {
