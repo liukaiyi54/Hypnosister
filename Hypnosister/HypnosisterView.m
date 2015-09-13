@@ -47,13 +47,6 @@
     path.lineWidth = 10;
     [self.circleColor setStroke];
     [path stroke];
-    
-    UIImage *image = [UIImage imageNamed:@"myself"];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.bounds = CGRectMake(0, 0, 40, 60);
-    imageView.center = self.center;
-    
-    [self addSubview:imageView];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
