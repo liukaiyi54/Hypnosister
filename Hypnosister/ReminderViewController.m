@@ -45,6 +45,14 @@
     note.fireDate = date;
     
     [[UIApplication sharedApplication] scheduleLocalNotification:note];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
+    NSString *alertDate = [formatter stringFromDate:date];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder" message:[NSString stringWithFormat:@"Setting an alert at %@", alertDate] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+
+    [alert show];
 }
 
 @end
