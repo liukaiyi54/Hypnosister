@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReminderViewController">
@@ -17,12 +18,17 @@
             <subviews>
                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="SKt-mw-gBc">
                     <rect key="frame" x="0.0" y="102" width="320" height="162"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="162" id="eKK-HO-8xR"/>
+                    </constraints>
                     <date key="date" timeIntervalSinceReferenceDate="463762452.78927702">
                         <!--2015-09-12 14:54:12 +0000-->
                     </date>
                 </datePicker>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcM-2b-687">
-                    <rect key="frame" x="33" y="323" width="254" height="30"/>
+                    <rect key="frame" x="119" y="323" width="82" height="30"/>
+                    <animations/>
                     <state key="normal" title="Remind me!">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -31,13 +37,13 @@
                     </connections>
                 </button>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="SKt-mw-gBc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1h7-hH-lsR"/>
-                <constraint firstItem="zcM-2b-687" firstAttribute="centerX" secondItem="SKt-mw-gBc" secondAttribute="centerX" id="55S-iw-xTC"/>
+                <constraint firstItem="zcM-2b-687" firstAttribute="top" secondItem="SKt-mw-gBc" secondAttribute="bottom" constant="59" id="8L8-kF-5dB"/>
                 <constraint firstItem="SKt-mw-gBc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="102" id="bNb-PI-N32"/>
-                <constraint firstItem="zcM-2b-687" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="33" id="i1T-hb-RRj"/>
-                <constraint firstItem="zcM-2b-687" firstAttribute="top" secondItem="SKt-mw-gBc" secondAttribute="bottom" constant="59" id="wFC-bf-Kpc"/>
+                <constraint firstItem="zcM-2b-687" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="l0e-YV-RPc"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
