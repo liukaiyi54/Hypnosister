@@ -47,6 +47,16 @@
     path.lineWidth = 10;
     [self.circleColor setStroke];
     [path stroke];
+    
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"Michael"];
+    NSRange range = [[text string] rangeOfString:@"Michael"];
+    
+    [text addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:60],
+                          NSForegroundColorAttributeName : [UIColor greenColor],
+                          NSStrokeWidthAttributeName : @-3,
+                          NSStrokeColorAttributeName : [UIColor redColor]} range:range];
+     
+    [text drawAtPoint:CGPointMake(center.x-100, center.y-30)];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -54,7 +64,7 @@
     float green = (arc4random() % 100) / 100.0;
     float blue = (arc4random() % 100) / 100.0;
     
-    UIColor *randomColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+    UIColor *randomColor = [UIColor colorWithRed:red green:green blue:blue alpha:0.7];
     
     self.circleColor = randomColor;
 }
