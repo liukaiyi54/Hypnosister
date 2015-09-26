@@ -58,11 +58,12 @@
 
 #pragma mark - eventhandlers
 - (void)drawHypnoticMessage:(NSString *)message {
-    for (NSInteger i = 0; i < 20; i ++) {
+//    for (NSInteger i = 0; i < 20; i ++) {
         UILabel *messageLabel = [[UILabel alloc] init];
     
         messageLabel.backgroundColor = [UIColor clearColor];
-        messageLabel.textColor = [UIColor grayColor];
+        messageLabel.textColor = [self randomColor];
+        messageLabel.font = [self randomFont];
         messageLabel.text = message;
         
         [messageLabel sizeToFit];
@@ -90,7 +91,21 @@
         motionEffect.minimumRelativeValue = @(-25);
         motionEffect.maximumRelativeValue = @(25);
         [messageLabel addMotionEffect:motionEffect];
-    }
+//    }
 }
 
+- (UIColor *)randomColor {
+    float red = (arc4random() % 100) / 100.0;
+    float green = (arc4random() % 100) / 100.0;
+    float blue = (arc4random() % 100) / 100.0;
+    
+    UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:1];
+    
+    return color;
+}
+
+- (UIFont *)randomFont {
+    float random = arc4random() % 50;
+    return [UIFont systemFontOfSize: random > 10 ? random : random * 10];
+}
 @end
