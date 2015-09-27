@@ -28,8 +28,8 @@
 
 - (void)drawRect:(CGRect)rect {
     [self drawCircles];
-    [self drawName];
     [self drawFlower];
+    [self drawName];
 }
 
 - (void)drawCircles {
@@ -88,7 +88,7 @@
         yOffset = rint(margin / 2);
     }
     
-    [[UIColor redColor] setFill];
+    [[UIColor orangeColor] setFill];
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path addArcWithCenter:CGPointMake(radius * 2 + xOffset, radius + yOffset) radius:radius startAngle:-M_PI endAngle:0 clockwise:YES];
     [path addArcWithCenter:CGPointMake(radius * 3 + xOffset, radius * 2 + yOffset) radius:radius startAngle:-M_PI_2 endAngle:M_PI_2 clockwise:YES];
