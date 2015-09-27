@@ -27,6 +27,12 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+    [self drawCircles];
+    [self drawName];
+    [self drawFlower];
+}
+
+- (void)drawCircles {
     CGRect bounds = self.bounds;
     
     CGPoint center;
@@ -37,7 +43,7 @@
     
     
     UIBezierPath *path = [[UIBezierPath alloc] init];
-
+    
     for (float currentRadius = maxRadius; currentRadius > 0; currentRadius -= 20) {
         [path moveToPoint:CGPointMake(center.x + currentRadius, center.y)];
         
@@ -47,6 +53,14 @@
     path.lineWidth = 10;
     [self.circleColor setStroke];
     [path stroke];
+}
+
+- (void)drawName {
+    CGRect bounds = self.bounds;
+    
+    CGPoint center;
+    center.x = bounds.origin.x + bounds.size.width/2;
+    center.y = bounds.origin.y + bounds.size.height/2;
     
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"Michael"];
     NSRange range = [[text string] rangeOfString:@"Michael"];
@@ -55,8 +69,34 @@
                           NSForegroundColorAttributeName : [UIColor greenColor],
                           NSStrokeWidthAttributeName : @-3,
                           NSStrokeColorAttributeName : [UIColor redColor]} range:range];
-     
+    
     [text drawAtPoint:CGPointMake(center.x-100, center.y-30)];
+}
+
+- (void)drawFlower {
+    CGSize size = self.bounds.size;
+    CGFloat margin = 10;
+    CGFloat radius = rintf(MIN(size.height - margin, size.width - margin) / 4);
+    
+    CGFloat xOffset, yOffset;
+    CGFloat offset = rintf((size.height - size.width) / 2);
+    if (offset > 0) {
+        xOffset = rint(margin / 2);
+        yOffset = offset;
+    } else {
+        xOffset = -offset;
+        yOffset = rint(margin / 2);
+    }
+    
+    [[UIColor redColor] setFill];
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path addArcWithCenter:CGPointMake(radius * 2 + xOffset, radius + yOffset) radius:radius startAngle:-M_PI endAngle:0 clockwise:YES];
+    [path addArcWithCenter:CGPointMake(radius * 3 + xOffset, radius * 2 + yOffset) radius:radius startAngle:-M_PI_2 endAngle:M_PI_2 clockwise:YES];
+    [path addArcWithCenter:CGPointMake(radius * 2 + xOffset, radius * 3 + yOffset) radius:radius startAngle:0 endAngle:M_PI clockwise:YES];
+    [path addArcWithCenter:CGPointMake(radius + xOffset, radius * 2 + yOffset) radius:radius startAngle:M_PI_2 endAngle:-M_PI_2 clockwise:YES];
+    
+    [path closePath];
+    [path fill];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
